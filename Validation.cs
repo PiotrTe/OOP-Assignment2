@@ -1,7 +1,7 @@
     interface IValidation                                                        
     {                                                                                     
         // A method for validating if an input is an integer or not                       
-        public static int ValidateInt(string input)                                           
+        private static int ValidateInt(string input)                                           
         {
             int number;
             bool isValid = int.TryParse(input, out number); // Try to parse the input as an integer
@@ -17,7 +17,7 @@
         }
 
         // A method for validating if an integer is within a certain range or not
-        public static bool ValidateIntRange(int input, int min, int max)                      
+        private static bool ValidateIntRange(int input, int min, int max)                      
         {
             if (input < min || input > max) // If the input is outside the given range, display an error message
             {
@@ -31,14 +31,19 @@
         }
 
         // A method for getting an integer input from the user within a certain range
-        public static int GetIntInput(string inputMessage, int min, int max)                  
+        protected static int GetIntInput(string inputMessage, int min, int max)                  
         {
-            string input;
+            string? input;
             int intInput;
             while (true) // Keep asking for input until valid input is given
             {
                 Console.WriteLine($"{inputMessage}"); // Display the input message
                 input = Console.ReadLine(); // Get input from the user
+                if (input == null)
+                {
+                    Console.WriteLine("Input cannot be empty");
+                    continue;
+                }
                 intInput = ValidateInt(input); // Validate the input as an integer
 
                 if (intInput == -2147483648) // If the input is not valid, ask for input again

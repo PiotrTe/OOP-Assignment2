@@ -39,12 +39,14 @@ class Pack : IValidation
                 pack.Add(new Card(rank, suit));
             }
         }
+
+        shuffleCardPack();
     }
 
     // Method for shuffling the pack of cards
 
 
-    public static void shuffleCardPack(List<Card> pack)
+    private void shuffleCardPack()
     {
         Random rng = new Random();
         int n = pack.Count;
@@ -58,21 +60,21 @@ class Pack : IValidation
         }
     }
 
-    public float calculate(float num1, float num2, string op)
+    public float calculate(float num1, float num2, int op)
     {
         float result = 0;
         switch (op)
         {
-            case "+":
-                result = (num1 + num2);
-                break;
-            case "-":
+            case 0:
                 result = (num1 - num2);
                 break;
-            case "*":
+            case 1:
+                result = (num1 + num2);
+                break;
+            case 2:
                 result = (num1 * num2);
                 break;
-            case "/":
+            case 3:
                 result = (num1 / num2);
                 break;
             default:
@@ -82,19 +84,21 @@ class Pack : IValidation
         return result;
     }
 
-    // Methods for dealing one card from the pack to the hand
-
-    // function to deal a specified number of cards to the player
-    public static void deal3()
+    // function to deal a number of cards from the pack to the hand
+    public static void deal(int numCards)
     {
-        if (pack.Count <= 0) // check if there are any cards left in the deck
+        for (int i = 0; i < numCards; i++)
         {
-            Console.WriteLine("There are no more cards in the deck");
-        }
-        else
-        {
-            hand.Add(pack[0]); 
-            pack.RemoveAt(0); 
+            if (pack.Count <= 0) // check if there are any cards left in the deck
+            {
+                Console.WriteLine("There are no more cards in the deck");
+                break;
+            }
+            else
+            {
+                hand.Add(pack[0]); 
+                pack.RemoveAt(0); 
+            }
         }
     }
 }
