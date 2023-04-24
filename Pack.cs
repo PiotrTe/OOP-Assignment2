@@ -1,9 +1,9 @@
 public enum Suit
 {
-    Addition = "+",
-    Subtraction = "-",
-    Multiplication = "*",
-    
+    Clubs,
+    Diamonds,
+    Hearts,
+    Spades   
 }
 
 public enum Rank
@@ -22,7 +22,6 @@ public enum Rank
     Queen,
     King
 }
-
 class Pack : IValidation
 {
     // List of cards in the pack and the current hand
@@ -43,68 +42,50 @@ class Pack : IValidation
     }
 
     // Method for shuffling the pack of cards
-    public static bool shuffleCardPack()
-    {
-        // Ask the user to choose a shuffling method
-        int shuffleType = IValidation.GetIntInput($"Choose shuffling method:\n" +
-            $"[1] Fisher Yates shuffle\n" +
-            $"[2] Riffle shuffle\n" +
-            $"[3] No shuffle\n", 1, 3);
 
-        // Perform the selected shuffling method
-        if (shuffleType == 1) // Fisher Yates shuffle
+
+    public static void shuffleCardPack(List<Card> pack)
+    {
+        Random rng = new Random();
+        int n = pack.Count;
+        while (n > 1)
         {
-            Random rng = new Random();
-            int n = pack.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                Card temp = pack[k];
-                pack[k] = pack[n];
-                pack[n] = temp;
-            }
-            return true;
+            n--;
+            int k = rng.Next(n + 1);
+            Card temp = pack[k];
+            pack[k] = pack[n];
+            pack[n] = temp;
         }
-        if (shuffleType == 2) // Riffle shuffle
+    }
+
+    public float calculate(float num1, float num2, string op)
+    {
+        float result = 0;
+        switch (op)
         {
-            for (int i = 0; i < 5; i++)
-            {
-                Random rng = new Random();
-                int n = pack.Count / 2;
-                List<Card> left = new List<Card>(pack.GetRange(0, n));
-                List<Card> right = new List<Card>(pack.GetRange(n, n));
-                pack.Clear();
-                while (left.Count > 0 && right.Count > 0)
-                {
-                    if (rng.NextDouble() < 0.5)
-                    {
-                        pack.Add(left[0]);
-                        left.RemoveAt(0);
-                    }
-                    else
-                    {
-                        pack.Add(right[0]);
-                        right.RemoveAt(0);
-                    }
-                }
-                pack.AddRange(left);
-                pack.AddRange(right);
-            }
-            return true;
+            case "+":
+                result = (num1 + num2);
+                break;
+            case "-":
+                result = (num1 - num2);
+                break;
+            case "*":
+                result = (num1 * num2);
+                break;
+            case "/":
+                result = (num1 / num2);
+                break;
+            default:
+                Console.WriteLine("Invalid operator");
+                break;
         }
-        if (shuffleType == 3) // No shuffle
-        {
-            return false;
-            // Do nothing
-        }
-        return false;
+        return result;
     }
 
     // Methods for dealing one card from the pack to the hand
 
-    // function to deal one card to the player
-    public static Card deal()
+    // function to deal a specified number of cards to the player
+    public static void deal3()
     {
         if (pack.Count <= 0) // check if there are any cards left in the deck
         {
@@ -112,32 +93,9 @@ class Pack : IValidation
         }
         else
         {
-            hand.Add(pack[0]); // add the top card from the deck to the player's hand
-            pack.RemoveAt(0); // remove the card from the deck
+            hand.Add(pack[0]); 
+            pack.RemoveAt(0); 
         }
-        return pack[0];
-    }
-
-    // function to deal a specified number of cards to the player
-    public static List<Card> dealCard(int amount)
-    {
-        List<Card> temp = new List<Card>();
-
-        for (int i = 0; i < amount; i++)
-        {
-            if (pack.Count <= 0) // check if there are any cards left in the deck
-            {
-                Console.WriteLine("There are no more cards in the deck");
-                break;
-            }
-            else
-            {
-                temp.Add(pack[0]);
-                hand.Add(pack[0]); // add the top card from the deck to the player's hand
-                pack.RemoveAt(0); // remove the card from the deck
-            }
-        }
-        return temp;
     }
 }
 
