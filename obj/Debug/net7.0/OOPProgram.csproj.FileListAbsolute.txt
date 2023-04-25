@@ -28,3 +28,18 @@ C:\Users\piotr\Desktop\Assignments\OOP Assignment 2\OOP-Assignment2\obj\Debug\ne
 C:\Users\piotr\Desktop\Assignments\OOP Assignment 2\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.pdb
 C:\Users\piotr\Desktop\Assignments\OOP Assignment 2\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.genruntimeconfig.cache
 C:\Users\piotr\Desktop\Assignments\OOP Assignment 2\OOP-Assignment2\obj\Debug\net7.0\ref\OOPProgram.dll
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\bin\Debug\net7.0\OOPProgram.exe
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\bin\Debug\net7.0\OOPProgram.deps.json
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\bin\Debug\net7.0\OOPProgram.runtimeconfig.json
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\bin\Debug\net7.0\OOPProgram.dll
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\bin\Debug\net7.0\OOPProgram.pdb
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.csproj.AssemblyReference.cache
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.AssemblyInfoInputs.cache
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.AssemblyInfo.cs
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.csproj.CoreCompileInputs.cache
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.dll
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\refint\OOPProgram.dll
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.pdb
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\OOPProgram.genruntimeconfig.cache
+C:\Users\Piotr\Documents\GitHub\OOP-Assignment2\obj\Debug\net7.0\ref\OOPProgram.dll

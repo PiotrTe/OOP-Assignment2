@@ -74,7 +74,7 @@ class Test : IValidation
                     sw.Stop();
                     Console.WriteLine("Correct");
                     string scoreString = $"Hand: {taskString} | Time: {sw.Elapsed} | Tries: {tries}";
-                    System.IO.File.AppendAllText(Leaderboard, scoreString + Environment.NewLine);
+                    System.IO.File.AppendAllText(leaderboard, scoreString + Environment.NewLine);
                     alert = scoreString;
                     tries = 0;
                     sw.Reset();

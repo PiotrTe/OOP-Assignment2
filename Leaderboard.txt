@@ -10,3 +10,4 @@ Hand:  | Time: 00:00:00.7883199 | Tries: 1
 Hand: 5 - 8 + 13 | Time: 00:00:09.5546959 | Tries: 1
 Hand: 1 + 2 - 9 | Time: 00:00:01.7454862 | Tries: 1
 Hand: 6 + 11 | Time: 00:00:01.9979169 | Tries: 1
+Hand: 8 - 7 / 3 | Time: 00:00:05.5542940 | Tries: 1
