@@ -7,7 +7,7 @@ interface IValidation
     //                //
 
 
-    // A method for validating if an input is a float or not                    
+    // A method for validating if an input is an integer or not                
     private static int ValidateInt(string input)                                           
     {
         int number;
@@ -37,7 +37,7 @@ interface IValidation
         }
     }
 
-    // A method for validating if an input is a float or not
+    // A method for validating if an input is an integer and within a given range
     protected static int GetIntInput(string inputMessage, int min, int max)                  
     {
         string? input;

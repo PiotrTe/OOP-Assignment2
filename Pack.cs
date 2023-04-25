@@ -29,7 +29,7 @@ class Pack : IValidation
     public static List<Card> hand = new List<Card>();
 
     // Constructor for creating a new pack of cards
-    public Pack()
+    public static void Populate()
     {
         // Loop through each rank and suit to create a new card of each combination
         foreach (Rank rank in Enum.GetValues(typeof(Rank)))
@@ -39,14 +39,13 @@ class Pack : IValidation
                 pack.Add(new Card(rank, suit));
             }
         }
-
         shuffleCardPack();
     }
 
     // Method for shuffling the pack of cards
 
 
-    private void shuffleCardPack()
+    private static void shuffleCardPack()
     {
         Random rng = new Random();
         int n = pack.Count;
@@ -60,7 +59,7 @@ class Pack : IValidation
         }
     }
 
-    public float calculate(float num1, float num2, int op)
+    public static float calculate(float num1, float num2, int op)
     {
         float result = 0;
         switch (op)

@@ -4,27 +4,29 @@ class Test : IValidation
     public static string alert = "";
     static float answer = 0;
     static string taskString = "";
-    static float timer = 0;
     static int num1 = 0;
     static int num2 = 0;
     static int num3 = 0;
     static int op1 = 0;
     static int op2 = 0;
-    // method for starting the game
+    static Pack pack = new Pack();
     public static void TestClass()
     {
+        string leaderboard = "Leaderboard.txt";
+        if (!File.Exists(leaderboard))
+        {
+            using (StreamWriter writer = new StreamWriter(leaderboard))
+            {
+                writer.WriteLine("This is an example.");
+            }
+        }
         float userInput = 0;
         int tries = 0;
         Stopwatch sw = new Stopwatch();
         while (true)
         {
-            Reset();
+            Pack.Populate();
             Menu();
-            if (Pack.hand.Count == 0)
-            {
-                continue;
-            }
-            
             foreach (Card card in Pack.hand)
             {
                 if (Pack.hand.IndexOf(card) % 2 == 1)
@@ -49,31 +51,41 @@ class Test : IValidation
                 else
                 {
                     taskString += (int)card.Rank;
-                }
+                }                
+            }
+            if (Pack.hand.Count == 0)
+            {
+                continue;
             }
             // clear the console window
             Console.Clear();
             System.Console.WriteLine("The answer is: " + answer);
             System.Console.WriteLine("Your task is: " + taskString);
-            sw.Start();
+            sw.Restart();
 
-            // get user input
-            userInput = IValidation.GetFloatInput("Please enter your answer: ", -10000, 10000);
-
-            if (userInput == answer) // if user input is correct
+            while(true)
             {
-                tries++;
-                sw.Stop();
-                Console.WriteLine("Correct");
-                taskString = $"Your hand: {(int)Pack.hand[0].Rank} {(int)Pack.hand[1].Suit} {(int)Pack.hand[2].Rank} {(int)Pack.hand[3].Suit} {(int)Pack.hand[4].Rank} | Your time: {sw.Elapsed} | Your tries: {tries}";
-                tries = 0;
+                // get user input
+                userInput = IValidation.GetFloatInput("Please enter your answer: ", -10000, 10000);
 
-            }
-            else
-            {
-                tries++;
-                Console.WriteLine("Incorrect");
-
+                if (userInput == answer) // if user input is correct
+                {
+                    tries++;
+                    sw.Stop();
+                    Console.WriteLine("Correct");
+                    string scoreString = $"Hand: {taskString} | Time: {sw.Elapsed} | Tries: {tries}";
+                    System.IO.File.AppendAllText(Leaderboard, scoreString + Environment.NewLine);
+                    alert = scoreString;
+                    tries = 0;
+                    sw.Reset();
+                    VarReset();
+                    break;
+                }
+                else
+                {
+                    tries++;
+                    Console.WriteLine("Incorrect");
+                }
             }
         }
 
@@ -82,11 +94,10 @@ class Test : IValidation
     // method for resetting the game
     private static void Menu()
     {
-        Pack pack = new Pack();
         float tempResult = 0;
         Console.Clear();
         Console.WriteLine("\nWelcome to the Maths Tutor Application.\n\nPlease choose one of the following menu options: \n\n [1] Instructions \n [2] Play ( 3 Cards ) \n [3] Play ( 5 Cards ) \n [4] Exit \n");
-        if (alert != "") System.Console.WriteLine($"\n!!! {alert} !!!\n");
+        if (alert != "") System.Console.WriteLine($"{alert}");
         alert = "";
         string? input = Console.ReadLine();
         switch (input)
@@ -101,7 +112,7 @@ class Test : IValidation
                 num2 = (int)Pack.hand[2].Rank;
                 op1 = (int)Pack.hand[1].Suit;
 
-                answer = pack.calculate(num1, num2, op1);
+                answer = Pack.calculate(num1, num2, op1);
                 answer = (float)Math.Round(answer, 2);
                 break;
 
@@ -115,19 +126,20 @@ class Test : IValidation
 
                 if (op1 < op2) // if first operator is lower than second operator
                 {
-                    tempResult = pack.calculate(num2 , num3, op2); // calculate the first BODMAS step result
-                    answer = pack.calculate(num1, tempResult, op1); // calculate the result of the whole equation
+                    tempResult = Pack.calculate(num2 , num3, op2); // calculate the first BODMAS step result
+                    answer = Pack.calculate(num1, tempResult, op1); // calculate the result of the whole equation
                     answer = (float)Math.Round(answer, 2);
                 }
                 else // swap the order of calculations
                 {
-                    tempResult = pack.calculate(num1, num2, op1);
-                    answer = pack.calculate(tempResult, num3, op2);
+                    tempResult = Pack.calculate(num1, num2, op1);
+                    answer = Pack.calculate(tempResult, num3, op2);
                     answer = (float)Math.Round(answer, 2);
                 }
                 break;
 
             case "4": // Exit
+                Console.Clear();
                 Console.WriteLine("\nThank you for playing");
                 // wait 2 seconds
                 Thread.Sleep(2000);
@@ -136,20 +148,21 @@ class Test : IValidation
                 break;
 
             default:  // Invalid input
-                alert = "Invalid input";
+                alert = "!!!   Invalid input   !!!";
                 break;
         }
     }
     // Reset all variables
-    private static void Reset()
+    private static void VarReset()
     {
-        answer = 0;
         taskString = "";
+        answer = 0;
         num1 = 0;
         num2 = 0;
         num3 = 0;
         op1 = 0;
         op2 = 0;
         Pack.hand.Clear();
+        Pack.pack.Clear();
     }
 }

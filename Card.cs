@@ -8,7 +8,25 @@
     public Card(Rank rank, Suit suit)
     {
         // Assign the passed-in Rank and Suit values to the Suit and Rank properties of the Card instance
-        Suit = suit;
-        Rank = rank;
+
+        // basic error handling before assigning the values
+        
+        if (Enum.IsDefined(typeof(Suit), suit))
+        {
+            Suit = suit;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid Suit", "suit");
+        }
+        if (Enum.IsDefined(typeof(Rank), rank))
+        {
+            Rank = rank;
+        }
+        else
+        {
+            throw new ArgumentException("Invalid Rank", "rank");
+        }
+
     }
 }
