@@ -7,7 +7,7 @@ interface IValidation
     //                //
 
 
-    // A method for validating if an input is an integer or not                
+    // A method for validating if an input is an integer or not
     private static int ValidateInt(string input)                                           
     {
         int number;
@@ -44,7 +44,7 @@ interface IValidation
         int intInput;
         while (true)
         {
-            Console.WriteLine($"{inputMessage}");
+            Console.WriteLine($"{inputMessage} (min: {min}, max: {max})");
             input = Console.ReadLine();
             if (input == null)
             {
@@ -68,6 +68,34 @@ interface IValidation
                 {
                     continue;
                 }
+            }
+        }
+        return intInput;
+    }
+
+    // A method for validating if an input is an integer
+    protected static int GetIntInput(string inputMessage)                                  
+    {
+        string? input;
+        int intInput;
+        while (true)
+        {
+            Console.WriteLine($"{inputMessage}");
+            input = Console.ReadLine();
+            if (input == null)
+            {
+                Console.WriteLine("Input cannot be empty");
+                continue;
+            }
+            intInput = ValidateInt(input);
+
+            if (intInput == -2147483648)
+            {
+                continue;
+            }
+            else
+            {
+                break;
             }
         }
         return intInput;
@@ -115,7 +143,7 @@ interface IValidation
         float floatInput;
         while (true)
         {
-            Console.WriteLine($"{inputMessage}");
+            Console.WriteLine($"{inputMessage} (min: {min}, max: {max})");
             input = Console.ReadLine();
             if (input == null)
             {
@@ -139,6 +167,34 @@ interface IValidation
                 {
                     continue;
                 }
+            }
+        }
+        return floatInput;
+    }
+
+    // A method for validating if an input is a float or not
+    protected static float GetFloatInput(string inputMessage)                               
+    {
+        string? input;
+        float floatInput;
+        while (true)
+        {
+            Console.WriteLine($"{inputMessage}");
+            input = Console.ReadLine();
+            if (input == null)
+            {
+                Console.WriteLine("Input cannot be empty");
+                continue;
+            }
+            floatInput = ValidateFloat(input);
+
+            if (floatInput == -3.402823E+38f)
+            {
+                continue;
+            }
+            else
+            {
+                break;
             }
         }
         return floatInput;

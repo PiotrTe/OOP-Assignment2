@@ -24,6 +24,7 @@ public enum Rank
 }
 class Pack : IValidation
 {
+    
     // List of cards in the pack and the current hand
     public static List<Card> pack = new List<Card>();
     public static List<Card> hand = new List<Card>();
@@ -82,8 +83,40 @@ class Pack : IValidation
         }
         return result;
     }
+    public static float calculate(float num1, float num2, float num3, int op1, int op2)
+    {
+        float result = 0;
+        float tempResult = 0;
+        if (op1 < op2) // if first operator is lower than second operator
+        {
+            tempResult = Pack.calculate(num2 , num3, op2); // calculate the first BODMAS step result
+            result = Pack.calculate(num1, tempResult, op1); // calculate the result of the whole equation
+            result = (float)Math.Round(result, 2);
+        }
+        else // swap the order of calculations
+        {
+            tempResult = Pack.calculate(num1, num2, op1);
+            result = Pack.calculate(tempResult, num3, op2);
+            result = (float)Math.Round(result, 2);
+        }
+        return result;
+    }
 
-    // function to deal a number of cards from the pack to the hand
+    // function to deal a card to the hand
+    public static void deal()
+    {
+        if (pack.Count <= 0) // check if there are any cards left in the deck
+        {
+            Console.WriteLine("There are no more cards in the deck");
+        }
+        else
+        {
+            hand.Add(pack[0]); 
+            pack.RemoveAt(0); 
+        }
+    }
+
+    // function to deal a number of cards to the hand
     public static void deal(int numCards)
     {
         for (int i = 0; i < numCards; i++)

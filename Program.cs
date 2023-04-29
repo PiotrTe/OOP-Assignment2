@@ -1,1 +1,3 @@
-﻿Test.TestClass();
+﻿Test.Testing();
+
+//Main.GameLoop();
