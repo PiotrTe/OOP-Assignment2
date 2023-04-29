@@ -1,17 +1,8 @@
 using System.Diagnostics;
-abstract class Main : IValidation
+class Main : Gameplay, IValidation
 {
-    public static string alert = "";
-    static float answer = 0;
-    protected static string taskString = "";
-    static int num1 = 0;
-    static int num2 = 0;
-    static int num3 = 0;
-    static int op1 = 0;
-    static int op2 = 0;
-    static Pack pack = new Pack();
-    static string leaderboard = "Leaderboard.txt";
-    public static void GameLoop()
+    
+    public override void GameLoop()
     {
         float userInput = 0;
         int tries = 0;
@@ -60,7 +51,7 @@ abstract class Main : IValidation
 
     }
     // method for resetting the game
-    protected static void Menu()
+    public override void Menu()
     {
         Console.Clear();
         Console.WriteLine("\nWelcome to the Maths Tutor Application.\n\nPlease choose one of the following menu options: \n\n [1] Instructions \n [2] Play ( 3 Cards ) \n [3] Play ( 5 Cards ) \n [4] Exit \n");
@@ -122,7 +113,7 @@ abstract class Main : IValidation
         Pack.pack.Clear();
     }
 
-    protected static void GenerateTask()
+    public override void GenerateTask()
     {
         foreach (Card card in Pack.hand)
         {
@@ -153,7 +144,7 @@ abstract class Main : IValidation
     }
 
     // method to write to file
-    public static void WriteToLeaderboard(string text)
+    public override void WriteToLeaderboard(string text)
     {
         if (!File.Exists(leaderboard))
         {

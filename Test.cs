@@ -3,6 +3,7 @@ class Test : Main, IValidation
 {
     public static void Testing()
     {
+        Main main = new Main();
         // test the calculate method
         Console.WriteLine("Testing the calculate method with different operators");
         Console.WriteLine("The result of 10 - 10 is: " + Pack.calculate(10, 10, 0));
@@ -74,7 +75,7 @@ class Test : Main, IValidation
         {
             Pack.Populate();
             Pack.deal(5);
-            Main.GenerateTask();
+            main.GenerateTask();
             Console.WriteLine(Main.taskString);
             Main.VarReset();
         }
@@ -82,7 +83,7 @@ class Test : Main, IValidation
         // Test writing to a file
         Console.WriteLine("Testing the file writing method");
         System.Console.WriteLine("Writing a test string to a file");
-        Main.WriteToLeaderboard("Test Entry");
+        main.WriteToLeaderboard("Test Entry");
         System.Console.WriteLine("Check the Leaderboard.txt file for the entry");
 
         System.Console.WriteLine("Method testing complete");
@@ -90,6 +91,6 @@ class Test : Main, IValidation
         // Test menu method
         Console.WriteLine("Input anything to continue to the main menu");
         Console.ReadLine();
-        Main.GameLoop();
+        main.GameLoop();
     }
 }
