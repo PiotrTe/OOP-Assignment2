@@ -1,3 +1,4 @@
-﻿Test.Testing();
+﻿//Test.Testing();
 
-//Main.GameLoop();
+Main main = new Main();
+main.GameLoop();
