@@ -70,11 +70,20 @@ class Test : Main, IValidation
 
         // Generate 5 tasks and display them to the user
         Console.WriteLine("Testing the task generation method");
-        System.Console.WriteLine("Generating 5 tasks");
+        System.Console.WriteLine("Generating 5 card tasks");
         for (int i = 0; i < 5; i++)
         {
             Pack.Populate();
             Pack.deal(5);
+            main.GenerateTask();
+            Console.WriteLine(Main.taskString);
+            Main.VarReset();
+        }
+        System.Console.WriteLine("Generating 3 card tasks");
+        for (int i = 0; i < 5; i++)
+        {
+            Pack.Populate();
+            Pack.deal(3);
             main.GenerateTask();
             Console.WriteLine(Main.taskString);
             Main.VarReset();

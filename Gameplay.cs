@@ -1,5 +1,6 @@
 class Gameplay
 {
+    // Fields
     protected static string alert = "";
     protected static float answer = 0;
     protected static  string taskString = "";
@@ -10,7 +11,9 @@ class Gameplay
     protected static int op2 = 0;
     protected static Pack pack = new Pack();
     protected string leaderboard = "Leaderboard.txt";
-    public virtual void GameLoop() // abstract method to be implemented in child classes
+    
+    // Methods
+    public virtual void GameLoop()
     {
 
     }
